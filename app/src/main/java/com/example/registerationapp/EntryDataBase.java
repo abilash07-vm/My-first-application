@@ -1,7 +1,6 @@
 package com.example.registerationapp;
 
 import android.content.Context;
-import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -11,7 +10,6 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 @Database(entities = {Entry.class}, version = 1)
 public abstract class EntryDataBase extends RoomDatabase {
-    public abstract EntryDao entryDao();
     private static EntryDataBase instance;
     private static RoomDatabase.Callback initialCallback = new RoomDatabase.Callback() {
         @Override
@@ -31,6 +29,8 @@ public abstract class EntryDataBase extends RoomDatabase {
         }
         return instance;
     }
+
+    public abstract EntryDao entryDao();
 
 
 //

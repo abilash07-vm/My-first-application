@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +14,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class AddEntryActivity extends AppCompatActivity {
@@ -72,19 +70,20 @@ public class AddEntryActivity extends AppCompatActivity {
     }
 
     private boolean check() {
-        String[] emailarr=email.split("@");
+        String[] emailarr = email.split("@");
         if (name.equals("") || email.equals("") || contact.equals("")) {
             return false;
-        }if(emailarr.length==1){
-            Toast.makeText(this,"Please enter valid email id",Toast.LENGTH_SHORT).show();
-            return  false;
         }
-        Character[] arr={'0','1','2','3','4','5','6','7','8','9'};
-        List<Character> Arr=Arrays.asList(arr);
-        for(Character ch:contact.toCharArray()){
-            if(! Arr.contains(ch)){
-                Toast.makeText(this,"Please enter valid Contact",Toast.LENGTH_SHORT).show();
-                return  false;
+        if (emailarr.length == 1) {
+            Toast.makeText(this, "Please enter valid email id", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        Character[] arr = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+        List<Character> Arr = Arrays.asList(arr);
+        for (Character ch : contact.toCharArray()) {
+            if (!Arr.contains(ch)) {
+                Toast.makeText(this, "Please enter valid Contact", Toast.LENGTH_SHORT).show();
+                return false;
             }
         }
         return true;

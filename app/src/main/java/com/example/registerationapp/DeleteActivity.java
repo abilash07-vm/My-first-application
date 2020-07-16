@@ -26,7 +26,7 @@ public class DeleteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_delete);
         deleteId = findViewById(R.id.editText);
         btndelete = findViewById(R.id.btndelete);
-        parent=findViewById(R.id.parent);
+        parent = findViewById(R.id.parent);
 
         final EntryDataBase db = EntryDataBase.getInstance(this);
         final List<Integer> allid = db.entryDao().getAllId();
@@ -41,9 +41,9 @@ public class DeleteActivity extends AppCompatActivity {
                     id = Integer.parseInt(temp);
                 }
                 final int finalId = id;
-                if(finalId==0){
+                if (finalId == 0) {
                     Toast.makeText(DeleteActivity.this, "please enter integer value....", Toast.LENGTH_SHORT).show();
-                }else if (allid.contains(finalId)) {
+                } else if (allid.contains(finalId)) {
                     Entry entry = new Entry();
                     entry.setId(finalId);
                     db.entryDao().deleteaEntry(entry);
@@ -63,6 +63,7 @@ public class DeleteActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(DeleteActivity.this, MainActivity.class);

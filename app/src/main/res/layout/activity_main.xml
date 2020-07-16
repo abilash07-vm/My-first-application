@@ -37,6 +37,7 @@
         android:text="Delete Entry"
         android:textColor="#101010"
         android:textSize="15sp" />
+
     <Button
         android:id="@+id/btnupdate"
         android:layout_width="200dp"

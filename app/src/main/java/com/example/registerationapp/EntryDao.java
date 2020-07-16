@@ -5,7 +5,6 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
-import androidx.room.Update;
 
 import java.util.List;
 
@@ -24,7 +23,7 @@ public interface EntryDao {
     List<Integer> getAllId();
 
     @Query("UPDATE people SET name=:name,gender=:gender,email=:email,phonenumber=:contact WHERE id=:id")
-    void updateEntry(int id,String name,String gender,String email,String contact);
+    void updateEntry(int id, String name, String gender, String email, String contact);
 
     @Query("SELECT * FROM people WHERE id=:id")
     Entry getEntryById(int id);

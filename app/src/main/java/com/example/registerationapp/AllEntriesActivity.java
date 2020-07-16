@@ -29,7 +29,7 @@ public class AllEntriesActivity extends AppCompatActivity {
 
 //        textView=findViewById(R.id.txtdummy);
         db = EntryDataBase.getInstance(this);
-        parent=findViewById(R.id.parent);
+        parent = findViewById(R.id.parent);
         List<Entry> allEntries = db.entryDao().getAllEntry();
         List<String> allEntriesArray = new ArrayList<>();
         if (allEntries.isEmpty()) {

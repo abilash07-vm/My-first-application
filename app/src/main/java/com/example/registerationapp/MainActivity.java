@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnAddEntry, btnViewAll, btnDelete, btnAboutus,btnUpdate;
+    private Button btnAddEntry, btnViewAll, btnDelete, btnAboutus, btnUpdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,UpdateActivity.class);
+                Intent intent = new Intent(MainActivity.this, UpdateActivity.class);
                 startActivity(intent);
             }
         });
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         btnViewAll = findViewById(R.id.btnAllentries);
         btnDelete = findViewById(R.id.btnDeleteAnentry);
         btnAboutus = findViewById(R.id.aboutus);
-        btnUpdate=findViewById(R.id.btnupdate);
+        btnUpdate = findViewById(R.id.btnupdate);
     }
 
 }
