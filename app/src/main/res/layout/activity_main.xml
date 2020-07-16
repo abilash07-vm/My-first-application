@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/homepage"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btnAddEntry"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="Add Entries"
+        android:textColor="#101010"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/btnAllentries"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/btnAddEntry"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="View All Entries"
+        android:textColor="#101010"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/btnDeleteAnentry"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/btnAllentries"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="Delete Entry"
+        android:textColor="#101010"
+        android:textSize="15sp" />
+    <Button
+        android:id="@+id/btnupdate"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/btnDeleteAnentry"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="Update Entry"
+        android:textColor="#101010"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/aboutus"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/btnupdate"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="About us"
+        android:textColor="#101010"
+        android:textSize="15sp" />
+</RelativeLayout>
