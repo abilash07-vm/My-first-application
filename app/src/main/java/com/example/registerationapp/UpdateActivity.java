@@ -2,9 +2,12 @@ package com.example.registerationapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -31,6 +34,60 @@ public class UpdateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
         init();
+
+        EditId.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Entry entry=db.entryDao().getEntryById(Integer.parseInt(EditId.getText().toString()));
+                if(entry!=null){
+                    Editname.setText(entry.getName());
+                    Editemail.setText(entry.getEmail());
+                    Editcontact.setText(entry.getPhonenumber());
+                    switch (entry.getGender()){
+                        case "male":
+                            ((RadioButton) genderradiogrp.findViewById(R.id.male)).setChecked(true);
+                            break;
+                        case "female":
+                            ((RadioButton) genderradiogrp.findViewById(R.id.female)).setChecked(true);
+                            break;
+                        default:
+                            ((RadioButton) genderradiogrp.findViewById(R.id.others)).setChecked(true);
+                            break;
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        genderradiogrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.male:
+                        gender = "male";
+                        break;
+                    case R.id.female:
+                        gender = "female";
+                        break;
+                    case R.id.others:
+                        gender="others";
+                        break;
+                    default:
+                        gender = "others";
+                        break;
+                }
+            }
+        });
+
         btnsubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,22 +99,7 @@ public class UpdateActivity extends AppCompatActivity {
                 if (!"".equals(temp)) {
                     id = Integer.parseInt(temp);
                 }
-                genderradiogrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(RadioGroup group, int checkedId) {
-                        switch (checkedId) {
-                            case R.id.male:
-                                gender = "male";
-                                break;
-                            case R.id.female:
-                                gender = "female";
-                                break;
-                            default:
-                                gender = "others";
-                                break;
-                        }
-                    }
-                });
+
                 if (check()) {
                     db.entryDao().updateEntry(id, name, gender, email, contact);
                     Toast.makeText(UpdateActivity.this, "Updated Successfully...", Toast.LENGTH_SHORT).show();

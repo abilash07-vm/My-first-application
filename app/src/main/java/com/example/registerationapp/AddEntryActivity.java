@@ -29,28 +29,32 @@ public class AddEntryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_entry);
         init();
+        genderradiogrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.male:
+                        gender = "male";
+                        break;
+                    case R.id.female:
+                        gender = "female";
+                        break;
+                    case R.id.others:
+                        gender="others";
+                        break;
+                    default:
+                        gender = "others";
+                        break;
+                }
+            }
+        });
         btnsubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 name = Editname.getText().toString();
                 email = Editemail.getText().toString();
                 contact = Editcontact.getText().toString();
-                genderradiogrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(RadioGroup group, int checkedId) {
-                        switch (checkedId) {
-                            case R.id.male:
-                                gender = "male";
-                                break;
-                            case R.id.female:
-                                gender = "female";
-                                break;
-                            default:
-                                gender = "others";
-                                break;
-                        }
-                    }
-                });
+
                 if (check()) {
                     Entry entry = new Entry(name, gender, email, contact);
                     db.entryDao().insertaEntry(entry);
