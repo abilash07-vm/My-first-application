@@ -18,7 +18,7 @@ public class AboutUsActivity extends AppCompatActivity {
         webView = findViewById(R.id.webview);
         webView.setWebViewClient(new WebViewClient());
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl("https://www.instagram.com/_._mr.abs_._/");
+        webView.loadUrl("https://abilash-2k20.web.app/");
     }
 
     @Override
