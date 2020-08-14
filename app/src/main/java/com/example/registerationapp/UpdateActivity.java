@@ -16,6 +16,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -43,21 +44,32 @@ public class UpdateActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Entry entry=db.entryDao().getEntryById(Integer.parseInt(EditId.getText().toString()));
-                if(entry!=null){
-                    Editname.setText(entry.getName());
-                    Editemail.setText(entry.getEmail());
-                    Editcontact.setText(entry.getPhonenumber());
-                    switch (entry.getGender()){
-                        case "male":
-                            ((RadioButton) genderradiogrp.findViewById(R.id.male)).setChecked(true);
-                            break;
-                        case "female":
-                            ((RadioButton) genderradiogrp.findViewById(R.id.female)).setChecked(true);
-                            break;
-                        default:
-                            ((RadioButton) genderradiogrp.findViewById(R.id.others)).setChecked(true);
-                            break;
+
+                ArrayList<Integer> ids= (ArrayList<Integer>) db.entryDao().getAllId();
+                int id2=0;
+                try{
+                    id2=Integer.parseInt(EditId.getText().toString());
+                }catch (NumberFormatException e){
+                    e.printStackTrace();
+                }
+
+                if(ids.contains(id2)){
+                    Entry entry=db.entryDao().getEntryById(id2);
+                    if(entry!=null){
+                        Editname.setText(entry.getName());
+                        Editemail.setText(entry.getEmail());
+                        Editcontact.setText(entry.getPhonenumber());
+                        switch (entry.getGender()){
+                            case "male":
+                                ((RadioButton) genderradiogrp.findViewById(R.id.male)).setChecked(true);
+                                break;
+                            case "female":
+                                ((RadioButton) genderradiogrp.findViewById(R.id.female)).setChecked(true);
+                                break;
+                            default:
+                                ((RadioButton) genderradiogrp.findViewById(R.id.others)).setChecked(true);
+                                break;
+                        }
                     }
                 }
             }
@@ -119,10 +131,11 @@ public class UpdateActivity extends AppCompatActivity {
 
     private boolean check() {
         String[] emailarr = email.split("@");
+        String[] emailarr2=email.split(".");
         if (name.equals("") || email.equals("") || contact.equals("")) {
             return false;
         }
-        if (emailarr.length == 1) {
+        if (emailarr.length == 1 || emailarr2.length==1) {
             Toast.makeText(this, "Please enter valid email id", Toast.LENGTH_SHORT).show();
             return false;
         }

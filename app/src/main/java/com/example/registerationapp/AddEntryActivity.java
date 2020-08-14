@@ -75,17 +75,22 @@ public class AddEntryActivity extends AppCompatActivity {
 
     private boolean check() {
         String[] emailarr = email.split("@");
+        String[] emailarr2=email.split("\\.");
         if (name.equals("") || email.equals("") || contact.equals("")) {
             return false;
         }
-        if (emailarr.length == 1) {
+        if (emailarr.length == 1 || emailarr2.length==1 || email.indexOf('@')>email.indexOf('.')) {
             Toast.makeText(this, "Please enter valid email id", Toast.LENGTH_SHORT).show();
             return false;
         }
         Character[] arr = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
         List<Character> Arr = Arrays.asList(arr);
+        if((contact.length()<10 || contact.length()>15)){
+            Toast.makeText(this, "Please enter valid Contact", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         for (Character ch : contact.toCharArray()) {
-            if (!Arr.contains(ch)) {
+            if (!Arr.contains(ch))  {
                 Toast.makeText(this, "Please enter valid Contact", Toast.LENGTH_SHORT).show();
                 return false;
             }
